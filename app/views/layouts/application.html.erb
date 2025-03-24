@@ -30,11 +30,11 @@
       </nav>
     </header>
     
+    <%= flash[:notice] %>
+    
     <div class="d-flex justify-content-center mb-2">
       <%= render 'searches/serach' %>
     </div>
-
-    <%= flash[:notice] %>
   
     <main class="mb-auto">
     <%= yield %>
