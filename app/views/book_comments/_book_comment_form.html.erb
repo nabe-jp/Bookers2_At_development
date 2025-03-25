@@ -1,0 +1,6 @@
+<!-- コメントの投稿フォーム -->
+<%= current_user.name %>
+<%= form_with model: [book_show, book_comment], local: false do |f| %>
+  <%= f.text_area :comment, rows: '5', style: "width: 100%;", placeholder: "コメントをここに" %>
+  <%= f.submit "送信" %>
+<% end %>

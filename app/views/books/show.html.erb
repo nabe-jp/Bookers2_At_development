@@ -10,13 +10,18 @@
       <%= render 'book_edit_form', book: @book %>
     </div>
 
-    <div class="col-md-8  offset-md-1">
+    <div class="col-md-8 offset-md-1">
       <!-- 本の詳細 -->
       <h3>Book detail</h3>
       <%= render 'books_detail_table', book_show: @book_show, book_comment: @book_comment %>
 
       <!-- コメントの表示、削除 -->
-      <%= render 'book_comments/comment', book_show: @book_show, book_comment: @book_comment %>
+      <div id="comments_area">
+        <%= render 'book_comments/comment', book_show: @book_show, book_comment: @book_comment %>
+      </div>
+
+      <!-- コメントの投稿フォーム -->
+      <%= render 'book_comments/book_comment_form', book_show: @book_show, book_comment: @book_comment %>
     </div>
   </div>
 </div>

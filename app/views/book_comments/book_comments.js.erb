@@ -1,0 +1,6 @@
+<!-- 戻る場所と表示する部分テンプレートファイルを指定する -->
+$("#comments_area")
+.html("<%= j(render 'book_comments/comment', book_show: @book, book_comment: @book_comment ) %>");
+
+<!-- フォームを送信したあとにフォームの値を空にします -->
+$("textarea").val('');

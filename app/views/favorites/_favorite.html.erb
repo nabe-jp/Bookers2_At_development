@@ -1,11 +1,11 @@
 <!-- ログインしてるユーザーがいいねを押しているか判定、押していれば赤色 -->
 <% if book.favorited_by?(current_user) %>
-  <%= link_to book_favorite_path(book), method: :delete do %>
+  <%= link_to book_favorite_path(book), method: :delete, remote: true, data: {"turbolinks" => false} do %>
     <i class="fa-solid fa-heart", style="color:red"></i>
   <%= book.favorites.count %> 
   <% end %>
 <% else %>
-  <%= link_to book_favorite_path(book), method: :post do %>
+  <%= link_to book_favorite_path(book), method: :post, remote: true, data: {"turbolinks" => false} do %>
     <i class="fa-solid fa-heart"></i>
     <%= book.favorites.count %>
   <% end %>
