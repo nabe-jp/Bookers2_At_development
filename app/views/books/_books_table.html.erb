@@ -25,7 +25,7 @@
             <p><%= book.body %></p>
           </td>
           <td id="favorite_buttons_<%= book.id %>">
-            <%= render 'favorites/favorite', book: book%>
+            <%= render 'favorites/favorite', book: book %>
           </tb>
           <td>
             <p>コメント数：<%= book.book_comments.count %></p>
@@ -37,4 +37,4 @@
 </table>
 
 <!--kaminari用-->
-<%= paginate kaminari %>
+<%= paginate books %>

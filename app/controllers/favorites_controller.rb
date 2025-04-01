@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
     if @book.user.id != current_user.id    # 自分の投稿にはいいねを出来ないようにする
       favorite = current_user.favorites.new(book_id: @book.id)
       favorite.save
+      render :favorite
     end
   end
 
@@ -13,6 +14,7 @@ class FavoritesController < ApplicationController
     if @book.user.id != current_user.id
       favorite = current_user.favorites.find_by(book_id: @book.id)
       favorite.destroy
+      render :favorite
     end
   end
 end
