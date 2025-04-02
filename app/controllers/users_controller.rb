@@ -7,12 +7,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books.page(params[:page])
+    @type = "show"                   #非同期通信用
   end
 
   def index
     @user = current_user
     @book = Book.new
     @users = User.page(params[:page])
+    @type = "index"                 #非同期通信用
   end
 
   def edit

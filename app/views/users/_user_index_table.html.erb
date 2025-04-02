@@ -22,6 +22,7 @@
         </td>
         <td id = "followers_counts_<%= user.id %>">
           <%= render "relationships/followers_count", user: user %>
+          <%= @type %>
         </td>
         <% if user.id == current_user.id %>
           <td></td>

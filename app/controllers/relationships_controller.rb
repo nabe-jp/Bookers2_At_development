@@ -3,17 +3,19 @@ class RelationshipsController < ApplicationController
   # フォローするとき
   def create
     current_user.follow(params[:user_id])
-    # redirect_to request.referer         #同期通信時使用
-    @user = User.find(params[:user_id])   #非同期通信時使用
-    render :relationships                 #非同期通信時使用
+    @user = User.find(params[:user_id])       #非同期通信時使用
+    
+    @type = params[:type1]
+    render :relationships_users_index_table   #非同期通信時使用
   end
 
   # フォロー外すとき
   def destroy
     current_user.unfollow(params[:user_id])
-    # redirect_to request.referer         #同期通信時使用
-    @user = User.find(params[:user_id])   #非同期通信時使用
-    render :relationships                 #非同期通信時使用
+    @user = User.find(params[:user_id])       #非同期通信時使用
+    
+    @type = params[:type1]
+    render :relationships_users_index_table   #非同期通信時使用
   end
 
   # フォロー一覧
