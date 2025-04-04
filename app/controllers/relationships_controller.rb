@@ -4,8 +4,7 @@ class RelationshipsController < ApplicationController
   def create
     current_user.follow(params[:user_id])
     @user = User.find(params[:user_id])       #非同期通信時使用
-    
-    @type = params[:type1]
+    @type = params[:param]                    #非同期通信時使用
     render :relationships_users_index_table   #非同期通信時使用
   end
 
@@ -13,8 +12,7 @@ class RelationshipsController < ApplicationController
   def destroy
     current_user.unfollow(params[:user_id])
     @user = User.find(params[:user_id])       #非同期通信時使用
-    
-    @type = params[:type1]
+    @type = params[:param]                    #非同期通信時使用
     render :relationships_users_index_table   #非同期通信時使用
   end
 

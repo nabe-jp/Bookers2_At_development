@@ -5,4 +5,4 @@ $('#followers_counts_<%= @user.id %>')
   .html("<%= j(render "relationships/followers_count", user: @user) %>");
 
 $('#relationships_buttons_<%= @user.id %>')
-  .html("<%= j(render "relationships/relationships", user: @user) %>");
+  .html("<%= j(render "relationships/relationships", user: @user, type: @type) %>");

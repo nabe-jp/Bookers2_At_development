@@ -1,9 +1,7 @@
-<%= @type %>
 <% if @type == "index" %>
   フォロワー数：<%= user.followers.count %>
 <% else %>
   <%= link_to user_followers_path(user.id) do %>
     <%= user.followers.count %>
-    <%= @type %>
   <% end %>
 <% end %>

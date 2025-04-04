@@ -47,6 +47,6 @@
   <% end %>
 <% else %>
   <div id = "relationships_buttons_<%= user.id %>">
-    <%= render "relationships/relationships", user: @user %>
+    <%= render "relationships/relationships", user: @user, type: @type %>
   </div>
 <% end %>

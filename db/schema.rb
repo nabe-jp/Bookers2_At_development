@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 2025_03_20_220636) do
     t.integer "follower_id"
     t.integer "followed_id"
     t.integer "user_id"
-    t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
