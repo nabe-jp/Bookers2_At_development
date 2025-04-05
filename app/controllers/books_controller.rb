@@ -11,8 +11,15 @@ class BooksController < ApplicationController
   
   def index
     @user = current_user
-    @books = Book.page(params[:page])
     @book = Book.new
+    to = Time.current.at_end_of_day             # 本日の23:59:59を toという変数に入れる
+    from = (to - 6.day).at_beginning_of_day     # to の 6日前の 0:00を fromという変数に入れる
+    @books = Book.all.sort {|a,b| 
+      b.favorites.where(created_at: from...to).size <=> 
+      a.favorites.where(created_at: from...to).size
+    }
+
+    # page(params[:page])   適応方法分からず据え置き
   end
 
   def edit
