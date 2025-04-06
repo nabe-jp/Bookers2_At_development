@@ -32,9 +32,12 @@
     
     <%= flash[:notice] %>
     
-    <div class="d-flex justify-content-center mb-2">
-      <%= render 'searches/serach' %>
-    </div>
+    <!-- サーチ機能を表示したくないページに記載、NoMethodErrorが出るときに読み込む -->
+    <% if ! @no_layouts_serach.present? %>
+      <div class="d-flex justify-content-center mb-2">
+        <%= render 'searches/serach' %>
+      </div>
+    <% end %>
   
     <main class="mb-auto">
     <%= yield %>

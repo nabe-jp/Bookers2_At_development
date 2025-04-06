@@ -1,0 +1,7 @@
+<% unless user.id == current_user.id %>
+  <% if current_user.is_followed_by?(user) && user.is_followed_by?(current_user) %>
+    <% if current_user != user %>
+      <%= link_to "DMへ", message_path(user.id), class: 'btn btn-default bg-primary' %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,16 @@
+<h4 class="text-center mb-3">チャットルーム</h4>
+
+<div class="row justify-content-center mb-3">
+  <div class="col text-right md-6">
+    <%= link_to "相手のページに戻る", user_path(params[:id]) %>
+  </div>
+  <div class = "col text-left md-6">
+    <%= link_to "ユーザー一覧に戻る", users_path, class:"edit-link" %>
+  </div>
+</div>
+
+<!-- メッセージ表示 -->
+<%= render "messages/messages", messages:@messages %>
+
+<!-- メッセージボックス -->
+<%= render "messages/message_edit", message:@message %>

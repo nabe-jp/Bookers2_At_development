@@ -3,9 +3,14 @@ class RelationshipsController < ApplicationController
   # フォローするとき
   def create
     current_user.follow(params[:user_id])
-    @user = User.find(params[:user_id])       #非同期通信時使用
-    @type = params[:param]                    #非同期通信時使用
-    render :relationships_users_index_table   #非同期通信時使用
+    @user = User.find(params[:user_id])         #非同期通信時使用
+    @type = params[:param]                      #非同期通信時使用
+
+    if(@type == "show")
+      redirect_to request.referer               #DM機能の為、同期通信
+    else
+      render :relationships_users_index_table   #非同期通信時使用
+    end
   end
 
   # フォロー外すとき
@@ -13,7 +18,12 @@ class RelationshipsController < ApplicationController
     current_user.unfollow(params[:user_id])
     @user = User.find(params[:user_id])       #非同期通信時使用
     @type = params[:param]                    #非同期通信時使用
-    render :relationships_users_index_table   #非同期通信時使用
+
+    if(@type == "show")
+      redirect_to request.referer               #DM機能の為、同期通信
+    else
+      render :relationships_users_index_table   #非同期通信時使用
+    end
   end
 
   # フォロー一覧

@@ -33,7 +33,7 @@
       <td>
         <h5>followers</h5>
       </td>
-      <td id = "followers_counts_<%= user.id %>">
+      <td id="followers_counts_<%= user.id %>">
         <%= link_to user_followers_path(user.id) do %>
           <%= user.followers.count %>
         <% end %>
@@ -41,12 +41,20 @@
     </tr>
   </tbody>
 </table>
-<% if user.id == current_user.id %>
-  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary", :style => "width: 100%;" do %>
-    <i class="fa-solid fa-user-gear"></i>
+
+<div class="row">
+  <% if user.id == current_user.id %>
+    <div class="col-md-12">
+      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary", :style => "width: 100%;" do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="col-md-7">
+      <%= render "relationships/relationships", user: @user, type: @type %>
+    </div>
+    <div class="col-md-5">
+      <%= render "messages/info", user: @user %>
+    </div>
   <% end %>
-<% else %>
-  <div id = "relationships_buttons_<%= user.id %>">
-    <%= render "relationships/relationships", user: @user, type: @type %>
-  </div>
-<% end %>
+</div>

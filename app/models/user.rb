@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
 
+
   # フォローをした、されたの関係
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -17,6 +18,11 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
 
+  # DM用
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+
+  
   has_one_attached :profile_image
 
   validates :name, uniqueness: true    # 一意性
@@ -49,6 +55,10 @@ class User < ApplicationRecord
     else
       @user = User.all
     end
+  end
+
+  def is_followed_by?(user)
+    reverse_of_relationships.find_by(follower_id: user.id).present?
   end
 
 

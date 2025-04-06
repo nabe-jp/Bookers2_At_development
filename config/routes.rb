@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: "homes#top"
   get  'home/about', to: 'homes#about', as: 'about'
   get "search" => "searches#search"
-  devise_for :users
+  get 'message/:id' => 'messages#show', as: 'message'
 
   resources :books, only: [:index, :show, :edit, :create, :update, :destroy] do
     resource :favorite, only: [:create, :destroy]
@@ -14,4 +15,7 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
+
+  resources :messages, only: [:create]
+  
 end
