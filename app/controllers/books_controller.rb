@@ -7,6 +7,11 @@ class BooksController < ApplicationController
     @user = @book_show.user
     @book = Book.new
     @book_comment = BookComment.new
+
+    # 閲覧数
+    unless ReadCount.find_by(user_id: current_user.id, book_id: @book_show.id)
+      current_user.read_counts.create(book_id: @book_show.id)
+    end
   end
   
   def index

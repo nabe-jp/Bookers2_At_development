@@ -2,10 +2,10 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th style="width: 20%"></th>
-      <th style="width: 20%">Title</th>
+      <th style="width: 10%"></th>
+      <th style="width: 15%">Title</th>
       <th style="width: 30%">Opinion</th>
-      <th style="width: 30%" colspan="2"></th>
+      <th style="width: 45%" colspan="3"></th>
     </tr>
   </thead>
 
@@ -30,6 +30,9 @@
           <td>
             <p>コメント数：<%= book.book_comments.count %></p>
           </tb>
+          <td>
+            閲覧数: <%= book.read_counts.count %>
+          </td>
         </tr>
       <% end %>
     <% end %>

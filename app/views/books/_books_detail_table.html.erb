@@ -1,11 +1,11 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th colspan="7"></th>
+      <th colspan="8"></th>
     </tr>
-   </thead>
+  </thead>
    <tbody>
-     <tr>
+    <tr>
       <td>
         <%= link_to user_path(book_show.id) do %>
           <%= image_tag @book_show.user.get_profile_image(100,100) %>
@@ -19,7 +19,7 @@
       <td>
         <p><%= book_show.body %></p>
       </td>
-      <<td id="favorite_buttons_<%= book_show.id %>">
+      <td id="favorite_buttons_<%= book_show.id %>">
         <%= render 'favorites/favorite', book: book_show %>
       <td>
         <p>コメント数：<%= book_show.book_comments.count %></p>
@@ -31,6 +31,9 @@
             <%= link_to book_path(book_show), class: "btn bg-info text-white", method: :delete, data:{confirm: "Are you sure?"} do %>Destroy
           <% end %>
         <% end %>
+      </td>
+      <td>
+        閲覧数: <%= book_show.read_counts.count %>
       </td>
     </tr>
   </tbody>

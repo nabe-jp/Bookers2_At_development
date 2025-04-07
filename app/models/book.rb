@@ -4,6 +4,10 @@ class Book < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
 
+  # 閲覧数
+  has_many :read_counts, dependent: :destroy
+
+  
   validates :title, :body, presence: true   # 空でない
   validates :body, length: { maximum: 200 }    # 最大200文字
 
