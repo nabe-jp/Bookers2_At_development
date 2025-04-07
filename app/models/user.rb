@@ -26,9 +26,9 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
 
-  validates :name, uniqueness: true    # 一意性
-  validates :name, length: { in: 2..20 }    # 2～20文字
-  validates :introduction, length: { maximum: 50 }   # 最大50文字
+  validates :name, uniqueness: true                   # 一意性
+  validates :name, length: { in: 2..20 }              # 2～20文字
+  validates :introduction, length: { maximum: 50 }    # 最大50文字
   
 
   # フォローしたときの処理

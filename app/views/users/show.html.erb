@@ -13,6 +13,10 @@
     <div class="col-md-8  offset-md-1">
       <h3>Books</h3>
       <%= render 'books/books_table', books: @books %>
+
+      <!-- 投稿数の前日比・先週比 -->
+      <%= render 'users/user_post_ratio', today_book: @today_book,
+        yesterday_book:@yesterday_book, this_week_book:@this_week_book, last_week_book:@last_week_book %>
     </div>
   </div>
 </div>
