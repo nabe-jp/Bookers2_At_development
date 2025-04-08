@@ -11,30 +11,19 @@
     </div>
 
     <div class="col-md-8  offset-md-1">
+      <!-- 投稿の表示 -->
       <h3>Books</h3>
       <%= render 'books/books_table', books: @books %>
 
       <!-- 投稿数の前日比・先週比 -->
-      <%= render 'users/user_post_ratio', today_book: @today_book,
-        yesterday_book:@yesterday_book, this_week_book:@this_week_book, last_week_book:@last_week_book %>
+      <%= render 'users/user_post_ratio', today_book: @today_book, yesterday_book: @yesterday_book,
+        this_week_book: @this_week_book, last_week_book: @last_week_book %>
 
       <!-- 7日間の投稿数 -->
       <%= render 'users/user_week_post_graph', books: @books %>
 
-      
-
-
-
-           <%= form_with url:user_search_path(@user), method: :get, local: false do |f| %>
-        <%= f.date_field :created_at %>
-        <%= f.submit '検索', class: "btn btn-primary" %>
-      <% end %>
-
-      <div id="search_result">
-        <% if @search_book.present? %>
-          <%= render 'search', search_book: @search_book %>
-        <% end %>
-      </div>
+      <!-- 指定日の投稿数検索 -->
+      <%= render 'users/user_books_searches', user: @user, search_book: @search_book %>
     </div>
   </div>
 </div>
