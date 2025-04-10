@@ -16,14 +16,10 @@ class GroupsController < ApplicationController
   def show
     @book = Book.new
     @group = Group.find(params[:id])
-    @user = User.find(params[:id])
+    @user = User.find(@group.owner_id)  # useinfoをグループオーナーに変更
   end
 
-  # メンバー追加用
-  def join
-    @group = Group.find(params[:group_id])
-    @group.users << current_user
-    redirect_to  groups_path
+  def edit
   end
 
   def create
@@ -37,9 +33,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @group.update(group_params)
       redirect_to groups_path
@@ -48,19 +41,27 @@ class GroupsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @group = Group.find(params[:id])
-  #   @group.destroy
-  #   redirect_to groups_path
-  # end
-
   def destroy
     @group = Group.find(params[:id])
-# current_userは、@group.usersから消されるという記述。
-    @group.users.delete(current_user)
+    @group.destroy
     redirect_to groups_path
   end
 
+  # メール機能に使用
+  def new_mail
+    @group = Group.find(params[:group_id])
+  end
+  
+  # グループのメンバー全員にメールを送信するためのアクション
+  def send_mail
+    @group = Group.find(params[:group_id])
+    group_users = @group.users
+    @mail_title = params[:mail_title]
+    @mail_content = params[:mail_content]
+    # ContactMailer.send_mail(@group, @mail_title, @mail_content,group_users).deliver
+  end
+
+  
   private
 
   def group_params

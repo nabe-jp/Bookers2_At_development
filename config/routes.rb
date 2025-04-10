@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   # グループ用
   resources :groups, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resource :group_users, only: [:create, :destroy]
-    get "join" => "groups#join"
+    get "new/mail" => "groups#new_mail"     # メール用
+    get "send/mail" => "groups#send_mail"   # メール用
   end
   
 end

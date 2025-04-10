@@ -34,7 +34,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -76,4 +76,16 @@ Rails.application.configure do
 
   config.hosts.clear # Railsを学ぼう 2章 ページの確認をする 最後の方にどのホストからでもアクセスできるよう追加
   config.active_job.queue_adapter = :inline
+
+  #　 メール機能のために追記
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                  587,
+    domain:               'gmail.com',
+    user_name:            '送信元となるGmailアドレスを記入',
+    password:             'アプリパスワードを記入',
+    authentication:       'login',
+    enable_starttls_auto:  true
+  }
 end
