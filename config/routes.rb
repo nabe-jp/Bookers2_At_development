@@ -17,6 +17,13 @@ Rails.application.routes.draw do
     get "search" => "users#search"
   end
 
+  # メッセージ用
   resources :messages, only: [:create]
+
+  # グループ用
+  resources :groups, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
+    resource :group_users, only: [:create, :destroy]
+    get "join" => "groups#join"
+  end
   
 end

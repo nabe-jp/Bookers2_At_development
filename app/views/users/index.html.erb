@@ -13,6 +13,7 @@
     <!-- ユーザー一覧 -->
     <div class="col-md-8  offset-md-1">
       <h3>Users</h3>
+      <%=link_to "グループを作成する",new_group_path %> | <%=link_to "グループ一覧",groups_path %>
       <%= render 'user_index_table', users: @users %>
     </div>
   </div>
