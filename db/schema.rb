@@ -58,11 +58,6 @@ ActiveRecord::Schema.define(version: 2025_04_11_170241) do
     t.string "tag"
   end
 
-  create_table "dm_rooms", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "entries", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "room_id", null: false
