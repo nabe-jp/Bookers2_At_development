@@ -16,3 +16,14 @@ import "../stylesheets/application";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+//  jQuery用に追加
+window.$ = window.jQuery = require('jquery');
+
+//  raty.jsというJavaScriptライブラリからRatyというオブジェクトをインポートして、グローバル変数のwindow.ratyに設定
+import Raty from "raty.js"
+window.raty = function(elem,opt) {
+  let raty =  new Raty(elem,opt)
+  raty.init();
+  return raty;
+}

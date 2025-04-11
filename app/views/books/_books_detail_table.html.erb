@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th colspan="8"></th>
+      <th colspan="9"></th>
     </tr>
   </thead>
    <tbody>
@@ -19,11 +19,18 @@
       <td>
         <p><%= book_show.body %></p>
       </td>
+      <td>
+      <!-- スターの表示 -->
+        <%= render 'books/book_static_rate', book: @book_show %>
+      </td>
       <td id="favorite_buttons_<%= book_show.id %>">
         <%= render 'favorites/favorite', book: book_show %>
       <td>
         <p>コメント数：<%= book_show.book_comments.count %></p>
       </tb>
+      <td>
+        閲覧数: <%= book_show.read_counts.count %>
+      </td>
       <td>
         <% if book_show.user_id == current_user.id %>
             <%= link_to edit_book_path(book_show), class: "btn bg-info text-white" do %>Edit
@@ -31,9 +38,6 @@
             <%= link_to book_path(book_show), class: "btn bg-info text-white", method: :delete, data:{confirm: "Are you sure?"} do %>Destroy
           <% end %>
         <% end %>
-      </td>
-      <td>
-        閲覧数: <%= book_show.read_counts.count %>
       </td>
     </tr>
   </tbody>
