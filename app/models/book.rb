@@ -42,6 +42,11 @@ class Book < ApplicationRecord
   scope :created_5day_ago, -> { where(created_at: 5.day.ago.all_day) }  # ...
   scope :created_6day_ago, -> { where(created_at: 6.day.ago.all_day) }  # 6日前に作成した全Bookを取得
 
+  # 本の一覧表で並び替えに使用
+  scope :latest, -> {order(created_at: :desc)}  # 最新のものから順に並べる
+  scope :old, -> {order(created_at: :asc)}      # 古いものから順に並べる
+  scope :star_count, -> {order(star: :desc)}    # 星の数が多いものから順に並べる
+
 
   # いいね機能、idがFavoritesテーブル内に存在するかを調べる、存在すればtrue
   def favorited_by?(user)

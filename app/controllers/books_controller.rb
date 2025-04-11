@@ -17,12 +17,23 @@ class BooksController < ApplicationController
   def index
     @user = current_user
     @book = Book.new
-    to = Time.current.at_end_of_day             # 本日の23:59:59を toという変数に入れる
-    from = (to - 6.day).at_beginning_of_day     # to の 6日前の 0:00を fromという変数に入れる
-    @books = Book.all.sort {|a,b| 
-      b.favorites.where(created_at: from...to).size <=> 
-      a.favorites.where(created_at: from...to).size
-    }
+
+    # ソート機能(最新、古い、スター)
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:old]
+      @books = Book.old
+    elsif params[:star_count]
+      @books = Book.star_count
+    else
+      # リロードしたとき、いいねが多い順位に表示(過去1週間)
+      to = Time.current.at_end_of_day             # 本日の23:59:59を toという変数に入れる
+      from = (to - 6.day).at_beginning_of_day     # to の 6日前の 0:00を fromという変数に入れる
+      @books = Book.all.sort {|a,b| 
+        b.favorites.where(created_at: from...to).size <=> 
+        a.favorites.where(created_at: from...to).size
+      }
+    end
 
     # page(params[:page])   適応方法分からず据え置き
   end
