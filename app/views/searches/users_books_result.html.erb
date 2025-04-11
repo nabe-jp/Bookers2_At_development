@@ -3,8 +3,8 @@
   <% if @range == "User" %>  
     <h5>Users search for "<%= @word %>"</h5>
     <%= render 'users/user_index_table', users: @users %>
-  <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+  <% elsif @range == "book" %>
+    <!--検索対象モデルがUserの時 -->
     <h5>Books search for "<%= @word %>"</h5>
     <%= render 'books/books_table', books: @books %>
   <% end %>

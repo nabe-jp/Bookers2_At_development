@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   # showアクションは、特定のユーザーの詳細ページを表示するため
   def show
     @user = User.find(params[:id])
-    @no_layouts_serach = true                                   # このページでは検索機能を表示しないようにするため
+    @no_layouts_search = true                                   # このページでは検索機能を表示しないようにするため
     rooms = current_user.entries.pluck(:room_id)                # 現在のユーザーが参加しているすべてのルームのIDを取得
     entries = Entry.find_by(user_id: @user.id, room_id: rooms)  # 特定のユーザーと現在のユーザーの間で共有されているルームのエントリーを見つける
 

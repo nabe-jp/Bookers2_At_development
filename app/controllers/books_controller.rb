@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-
-  before_action :ensure_correct_user, only: [:edit]
+  # private参照、ログイン中のユーザーのみ編集・削除できるようにする
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
     @book_show = Book.find(params[:id])
@@ -72,6 +72,8 @@ class BooksController < ApplicationController
   end
 
   private
+
+  # ログイン中のユーザーのみ編集・削除できるようにする
   def ensure_correct_user
     @book = Book.find(params[:id])
     unless @book.user == current_user
@@ -80,6 +82,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :tag)
   end
 end

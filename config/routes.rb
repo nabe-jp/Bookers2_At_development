@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get  'home/about', to: 'homes#about', as: 'about'
   get "search" => "searches#search"
+  get "tag_search" => "tag_searches#search"
   get 'message/:id' => 'messages#show', as: 'message'
 
   resources :books, only: [:index, :show, :edit, :create, :update, :destroy] do

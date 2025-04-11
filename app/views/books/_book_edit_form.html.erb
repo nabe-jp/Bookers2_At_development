@@ -7,10 +7,14 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
-
-  <!-- スターについての記述 -->
-  <%= render 'books/book_edit_rate', f: f, book: @book %>
-
+  <div class="form-group">
+    <%= f.label :Tag %>
+    <%= f.text_field :tag, class: 'form-control book_tag' %>
+  </div>
+  <div class="form-group">
+    <!-- スターについての記述 -->
+    <%= render 'books/book_edit_rate', f: f, book: @book %>
+  </div>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>

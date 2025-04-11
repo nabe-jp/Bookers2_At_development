@@ -2,10 +2,11 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th style="width: 10%"></th>
+      <th style="width: 5%"></th>
       <th style="width: 15%">Title</th>
-      <th style="width: 20%">Opinion</th>
-      <th style="width: 20%"></th>
+      <th style="width: 15%">Opinion</th>
+      <th style="width: 15%">Tag</th>
+      <th style="width: 15%"></th>
       <th style="width: 5%"></th>
       <th style="width: 30%" colspan="2"></th>
     </tr>
@@ -15,29 +16,26 @@
     <% books.each do |book| %>
       <%= link_to user_path(book.user) do %>
         <tr>
-          <td>
-            <%= image_tag book.user.get_profile_image(100,100) %>
-          </td>
+          <td><%= image_tag book.user.get_profile_image(100,100) %></td>
           <td>
             <%= link_to book_path(book) do %>
               <%= book.title %>
             <% end %>
           </td>
+          <td><%= book.body %></td>
           <td>
-            <p><%= book.body %></p>
+            <% if book.tag? %>
+              <%= link_to book.tag, tag_search_path(word: book.tag) %>
+            <% else %>
+              <%= book.tag %>
+            <% end %>
           </td>
-          <td>
-            <%= render 'books/book_static_rate', book: book %>
-          </td>
+          <td><%= render 'books/book_static_rate', book: book %></td>
           <td id="favorite_buttons_<%= book.id %>">
             <%= render 'favorites/favorite', book: book %>
           </tb>
-          <td>
-            <p>コメント数：<%= book.book_comments.count %></p>
-          </tb>
-          <td>
-            閲覧数: <%= book.read_counts.count %>
-          </td>
+          <td>コメント数：<%= book.book_comments.count %></tb>
+          <td>閲覧数: <%= book.read_counts.count %></td>
         </tr>
       <% end %>
     <% end %>

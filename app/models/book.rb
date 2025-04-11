@@ -8,8 +8,8 @@ class Book < ApplicationRecord
   has_many :read_counts, dependent: :destroy
 
   
-  validates :title, :body, presence: true       # 空でない
-  validates :body, length: { maximum: 200 }     # 最大200文字
+  validates :title, :body, :tag, presence: true       # 空でない
+  validates :body, length: { maximum: 200 }           # 最大200文字
 
 
   # 検索方法分岐
