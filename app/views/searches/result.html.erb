@@ -2,10 +2,12 @@
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>  
     <h5>Users search for "<%= @word %>"</h5>
-    <%= render 'users/user_index_table', users: @users %>
-  <% elsif @range == "book" %>
+    <%= render 'users/user_index_table', users: @users, type: @type %>
+  <% elsif @range == "Book" || @range == "Tag"%>
     <!--検索対象モデルがUserの時 -->
     <h5>Books search for "<%= @word %>"</h5>
     <%= render 'books/books_table', books: @books %>
+  <% else %>
+    flash[:alert]
   <% end %>
 </table>

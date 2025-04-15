@@ -1,45 +1,55 @@
-<table class="table table-striped">
+<table class="table">
   <thead>
     <tr>
-      <th colspan="9"></th>
+      <th style="width: 10%"></th>
+      <th style="width: 15%">Title</th>
+      <th style="width: 15%">Opinion</th>
+      <th style="width: 28%">Tag・Evaluation</th>
+      <th style="width: 25%"></th>
+      <th style="width: 7%"></th>
     </tr>
   </thead>
    <tbody>
-    <tr>
-      <td>
-        <%= link_to user_path(book_show.id) do %>
-          <%= image_tag @book_show.user.get_profile_image(100,100) %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to book_path(book_show.id) do %>
-          <%= @book_show.title %>
-        <% end %>
-      </td>
-      <td>
-        <p><%= book_show.body %></p>
-      </td>
-      <td>
-      <!-- スターの表示 -->
-        <%= render 'books/book_static_rate', book: @book_show %>
-      </td>
-      <td id="favorite_buttons_<%= book_show.id %>">
-        <%= render 'favorites/favorite', book: book_show %>
-      <td>
-        <p>コメント数：<%= book_show.book_comments.count %></p>
-      </tb>
-      <td>
-        閲覧数: <%= book_show.read_counts.count %>
-      </td>
-      <td>
-        <% if book_show.user_id == current_user.id %>
-            <%= link_to edit_book_path(book_show), class: "btn bg-info text-white" do %>Edit
+    <% if book_show.present? %> <!-- 投稿があるか判定、なければelseでメッセージ表示-->
+      <tr>
+        <td rowspan="2">
+          <%= link_to user_path(book_show.id) do %>
+            <%= image_tag book_show.user.get_profile_image(50,50) %>
           <% end %>
-            <%= link_to book_path(book_show), class: "btn bg-info text-white", method: :delete, data:{confirm: "Are you sure?"} do %>Destroy
+        </td>
+        <td  rowspan="2"> 
+          <%= link_to book_path(book_show.id) do %>
+            <%= book_show.title %>
           <% end %>
-        <% end %>
-      </td>
-    </tr>
+        </td>
+        <td  rowspan="2">
+          <%= book_show.body %>
+        </td>
+        <td  rowspan="2">
+          <% if book_show.tag? %>
+            <%= link_to book_show.tag, tag_search_path(word: book_show.tag) %>
+          <% else %>
+            <%= book_show.tag %>
+          <% end %>
+          <div><%= render 'books/book_static_rate', book: book_show %></div>
+          <div id="favorite_buttons_<%= book_show.id %>">
+              <%= render 'favorites/favorite', book: book_show %></div>
+        </td>
+        <td rowspan="2" style="vertical-align: middle;">
+          <div>コメント数： <%= book_show.book_comments.count %></div>
+          <div>閲覧数: <%= book_show.read_counts.count %></div>
+        </td>
+        <td colspan="2" style="vertical-align: middle;">
+          <% if book_show.user_id == current_user.id %>
+            <%= link_to edit_book_path(book_show), class: "btn bg-info text-white" do %>Edit<% end %>
+            <%= link_to book_path(book_show), class: "btn bg-info text-white",
+              method: :delete, data:{confirm: "Are you sure?"} do %>Destroy<% end %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <td>

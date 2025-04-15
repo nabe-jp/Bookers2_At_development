@@ -4,40 +4,25 @@
 <table class="table">
   <tbody>
     <tr>
-      <td>
-        <h5>name</h5>
-      </td>
-      <td>
-        <h5><%= user.name %></h5>
-      </td>
+      <td><h5>name</h5></td>
+      <td><h5><%= user.name %></h5></td>
     </tr>
     <tr>
-      <td>
-        <h5>introduction</h5>
-      </td>
-      <td>
-        <h5><%= user.introduction %></h5>
-      </td>
+      <td><h5>introduction</h5></td>
+      <td><h5><%= user.introduction %></h5></td>
     </tr>
     <tr>
-      <td>
-        <h5>follows</h5>
-      </td>
-      <td>
-        <%= link_to user_followings_path(user.id) do %>
-          <%= user.followings.count %>
-        <% end %>
-      </td>
+      <td><h5>follows</h5></td>
+      <td><%= link_to user_followings_path(user.id) do %>
+        <%= user.followings.count %>
+        <% end %></td>
     </tr>
     <tr>
-      <td>
-        <h5>followers</h5>
-      </td>
+      <td><h5>followers</h5></td>
       <td id="followers_counts_<%= user.id %>">
         <%= link_to user_followers_path(user.id) do %>
           <%= user.followers.count %>
-        <% end %>
-      </td>
+        <% end %></td>
     </tr>
   </tbody>
 </table>

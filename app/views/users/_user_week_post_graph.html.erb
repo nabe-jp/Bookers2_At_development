@@ -5,7 +5,7 @@
     var myLineChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+        labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'], // グラフのラベル（x軸の値）
         datasets: [
           {
             label: '投稿した本の数',
@@ -18,9 +18,9 @@
               <%= books.created_yesterday.count %>,
               <%= books.created_today.count %>
             ],
-            borderColor: "rgba(0,0,255,1)",
-            backgroundColor: "rgba(0,0,0,0)",
-            tension: 0.4
+            borderColor: "rgba(0,0,255,1)",   // グラフの線の色
+            backgroundColor: "rgba(0,0,0,0)", // グラフの背景色
+            tension: 0.4  // グラフの曲線の滑らかさ（0から1の範囲で設定。数値が大きくなるほど曲線が滑らかになる）
           }
         ],
       },
@@ -29,11 +29,12 @@
           display: true,
           text: '7日間の投稿数の比較'
         },
-        responsive: true,
+        responsive: true, // グラフのレスポンシブデザインを有効化
         scales: {
-          y:{
-            suggestedMin: 0,
-            suggestedMax: 10
+          y: {
+            // y軸（縦軸）の設定。設定しないと自動になるので書かなくても良い。
+            suggestedMin: 0, // 最小値を0に設定
+            suggestedMax: 10 // 最大値を10に設定
           },
           x:{
             stacked: true
